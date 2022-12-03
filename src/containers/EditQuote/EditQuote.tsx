@@ -7,7 +7,7 @@ import AddForm from "../../components/AddForm/AddForm";
 const EditQuote = () => {
   const {id} = useParams();
   const navigate = useNavigate();
-  const [quote, setQuote] = useState<QuoteApi | undefined>(undefined);
+  const [quote, setQuote] = useState<QuoteApi | null>(null);
 
   const fetchOneQuote = useCallback(async  () => {
     try{
@@ -38,10 +38,14 @@ const EditQuote = () => {
 
   return (
     <div>
-      <AddForm
-      onSubmit={updateQuote}
-      currentQuote={quote}
-      />
+      {quote && (
+        <AddForm
+          onSubmit={updateQuote}
+          currentQuote={quote}
+        />
+      )
+      }
+
     </div>
   );
 };
