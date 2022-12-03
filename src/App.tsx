@@ -2,14 +2,24 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Navbar from "./components/Navbar/Navbar";
 import Home from "../src/containers/Home/Home";
 import axiosApi from "./axiosApi";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
 import {Quote} from "./types";
 import {QuotesList} from "./types";
 import Sidebar from "./components/Sidebar/Sidebar";
 import NewQuote from "./containers/NewQuote/NewQuote";
+import EditQuote from "./containers/EditQuote/EditQuote";
+
+const categories = [
+  {title: 'Star Wars', id: 'star-wars'},
+  {title: 'Music', id: 'music'},
+  {title: 'Motivational', id: 'motivational'},
+  {title: 'Politicians', id: 'politicians'},
+  {title: 'Writers', id: 'writers'},
+]
 
 
 function App() {
+  const location = useLocation()
   const [quotes, setQuotes] = useState<Quote[]>([]);
 
   const fetchQuotes = useCallback(async () => {
@@ -29,8 +39,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    void fetchQuotes();
-  }, [fetchQuotes])
+    if (location.pathname === '/') {
+      void fetchQuotes();
+    }
+  }, [fetchQuotes, location]);
 
   return (
     <>
@@ -41,7 +53,7 @@ function App() {
         <div className=" col col-2">
           <Sidebar/>
         </div>
-        <div className="col me-5">
+        <div className="col  col-7 me-5">
           <Routes>
             <Route
               path="/"
@@ -54,6 +66,11 @@ function App() {
               element={(
                 <NewQuote/>
               )}/>
+            <Route
+              path="edit-quote/:id"
+              element={(
+                <EditQuote/>
+            )}/>
           </Routes>
         </div>
 

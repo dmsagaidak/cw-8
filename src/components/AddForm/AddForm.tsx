@@ -4,15 +4,19 @@ import {QuoteMutation} from "../../types";
 
 interface Props {
   onSubmit: (quote: QuoteApi) => void;
-
+  currentQuote?: QuoteApi;
 }
 
-const AddForm: React.FC<Props> = ({onSubmit}) => {
-  const [quote, setQuote] = useState<QuoteMutation>({
+const AddForm: React.FC<Props> = ({onSubmit, currentQuote}) => {
+  const initialState = currentQuote ? {
+    ...currentQuote
+  } : {
     category: '',
     author: '',
     text: ''
-  });
+  }
+
+  const [quote, setQuote] = useState<QuoteMutation>(initialState);
 
   const onQuoteChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const {name, value} = e.target;
