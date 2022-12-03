@@ -5,6 +5,9 @@ import axiosApi from "./axiosApi";
 import {Route, Routes} from "react-router-dom";
 import {Quote} from "./types";
 import {QuotesList} from "./types";
+import Sidebar from "./components/Sidebar/Sidebar";
+import NewQuote from "./containers/NewQuote/NewQuote";
+
 
 function App() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
@@ -34,15 +37,26 @@ function App() {
       <header>
         <Navbar/>
       </header>
-      <main>
-        <Routes>
-          <Route
-          path="/"
-          element={(
-            <Home quotes={quotes}/>
-          )}
-          />
-        </Routes>
+      <main className="row no-gutters">
+        <div className=" col col-2">
+          <Sidebar/>
+        </div>
+        <div className="col me-5">
+          <Routes>
+            <Route
+              path="/"
+              element={(
+                <Home quotes={quotes}/>
+              )}
+            />
+            <Route
+              path="add-quote"
+              element={(
+                <NewQuote/>
+              )}/>
+          </Routes>
+        </div>
+
       </main>
     </>
   );

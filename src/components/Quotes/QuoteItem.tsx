@@ -9,8 +9,8 @@ const QuoteItem: React.FC<Props> = ({quote}) => {
   return (
     <div className="card mb-2">
       <div className="card-body">
-        <span>{quote.author}</span>
-        <span>{quote.category}</span>
+        <span className="pe-5"><b>Author:</b> {quote.author}</span>
+        <span className="ps-5"><b>Category: </b>{quote.category}</span>
         <p>{quote.text}</p>
       </div>
     </div>

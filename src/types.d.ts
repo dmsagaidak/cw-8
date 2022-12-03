@@ -14,3 +14,5 @@ export interface QuoteMutation {
 export interface QuotesList {
   [id: string]: Quote;
 }
+
+export type QuoteApi = Omit<Quote, 'id'>

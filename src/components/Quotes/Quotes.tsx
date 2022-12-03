@@ -8,7 +8,7 @@ interface Props {
 
 const Quotes: React.FC<Props> = ({quotes}) => {
   return (
-    <div>
+    <div className="mt-1">
       {quotes.map((quote) => (
         <QuoteItem
         key={quote.id}
