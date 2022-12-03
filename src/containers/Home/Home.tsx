@@ -9,7 +9,7 @@ interface Props {
 
 const Home: React.FC<Props> = ({quotes, title}) => {
   return (
-    <div>
+    <div className="mt-3">
       <h2>{title}</h2>
       <Quotes quotes={quotes}/>
     </div>

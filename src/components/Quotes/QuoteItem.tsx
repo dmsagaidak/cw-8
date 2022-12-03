@@ -19,13 +19,26 @@ const QuoteItem: React.FC<Props> = ({quote}) => {
     }
   }
 
+  let category
+  if(quote.category === 'star-wars'){
+    category = 'Star Wars';
+  }else if(quote.category === 'writers'){
+    category = 'Writers';
+  }else if(quote.category === 'politicians'){
+    category = 'Politicians';
+  }else if(quote.category === 'music'){
+    category = 'Music'
+  }else{
+    category = 'Motivational'
+  }
+
 
   return (
     <div className="card mb-2">
       <div className="card-body row no-gutters">
         <div className="col col-10">
           <span className="pe-5"><b>Author:</b> {quote.author}</span>
-          <span><b>Category: </b>{quote.category}</span>
+          <span><b>Category: </b>{category}</span>
           <p className="mt-3">{quote.text}</p>
         </div>
         <div className="col">

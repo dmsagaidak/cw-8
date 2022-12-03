@@ -26,7 +26,7 @@ const QuoteCategory: React.FC<Props> = ({title, id}) => {
   }, [fetchCategories])
 
   return (
-    <div>
+    <div  className="mt-3">
       <h2>{title}</h2>
       <Quotes
       quotes={quotes}
