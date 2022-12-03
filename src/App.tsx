@@ -8,6 +8,7 @@ import {QuotesList} from "./types";
 import Sidebar from "./components/Sidebar/Sidebar";
 import NewQuote from "./containers/NewQuote/NewQuote";
 import EditQuote from "./containers/EditQuote/EditQuote";
+import QuoteCategory from "./containers/QuoteCategory/QuoteCategory";
 
 const categories = [
   {title: 'Star Wars', id: 'star-wars'},
@@ -19,7 +20,7 @@ const categories = [
 
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   const [quotes, setQuotes] = useState<Quote[]>([]);
 
   const fetchQuotes = useCallback(async () => {
@@ -30,7 +31,8 @@ function App() {
         quote.id = key;
         return quote
       });
-      setQuotes(quotes)
+      setQuotes(quotes);
+
     }catch(e){
       console.log(e)
     }finally{
@@ -58,16 +60,29 @@ function App() {
             <Route
               path="/"
               element={(
-                <Home quotes={quotes}/>
+                <Home
+                  title={"All"}
+                  quotes={quotes}/>
               )}
             />
+            {categories.map(item => (
+              <Route
+              path={"/categories/" + item.id}
+              key={item.id}
+              element={(
+                <QuoteCategory
+                  title={item.title}
+                  id={item.id}/>
+              )}
+              />
+            ))}
             <Route
               path="add-quote"
               element={(
                 <NewQuote/>
               )}/>
             <Route
-              path="edit-quote/:id"
+              path="/edit-quote/:id"
               element={(
                 <EditQuote/>
             )}/>

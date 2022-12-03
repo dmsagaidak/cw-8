@@ -25,8 +25,8 @@ const QuoteItem: React.FC<Props> = ({quote}) => {
       <div className="card-body row no-gutters">
         <div className="col col-10">
           <span className="pe-5"><b>Author:</b> {quote.author}</span>
-          <span className="ps-5"><b>Category: </b>{quote.category}</span>
-          <p>{quote.text}</p>
+          <span><b>Category: </b>{quote.category}</span>
+          <p className="mt-3">{quote.text}</p>
         </div>
         <div className="col">
           <button className="btn btn-sm btn-danger mb-1" onClick={() => removeQuote(quote)}>Remove</button>

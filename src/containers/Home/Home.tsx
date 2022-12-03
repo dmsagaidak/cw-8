@@ -4,11 +4,13 @@ import Quotes from "../../components/Quotes/Quotes";
 
 interface Props {
   quotes: Quote[];
+  title: string;
 }
 
-const Home: React.FC<Props> = ({quotes}) => {
+const Home: React.FC<Props> = ({quotes, title}) => {
   return (
     <div>
+      <h2>{title}</h2>
       <Quotes quotes={quotes}/>
     </div>
   );
